@@ -25,6 +25,12 @@ poetryでライブラリをインストール
 poetry add streamlit@1.25.0
 ```
 
+SQLiteのセットアップ方法
+
+```bash
+poetry run python init_sqlite.py
+```
+
 streamlitで実行する方法
 
 ```bash
@@ -63,3 +69,8 @@ poetry run streamlit run home.py
 1. [streamlit](https://streamlit.io/)
 2. [Dev Containerを使ってみよう](https://zenn.dev/bells17/articles/devcontainer-2024)
 3. [PythonのコードフォーマッターのBlackの使い方](https://book.st-hakky.com/hakky/application-python-black/)
+4. [Dream Studio](https://beta.dreamstudio.ai/generate)
+5. [ChatGPTで独自データを利用できるLlamaIndexはどんな仕組みで動いているのか？調べてみました](https://dev.classmethod.jp/articles/llamaindex-overview/)
+6. [GitHub - llama_index](https://github.com/run-llama/llama_index)
+7. [Note - LlamaIndex で ChatGPT API を試す](https://note.com/npaka/n/ncbb858cf11c3)
+8. [データサイエンス100本ノック（構造化データ加工編）](https://github.com/The-Japan-DataScientist-Society/100knocks-preprocess)

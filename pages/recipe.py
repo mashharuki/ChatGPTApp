@@ -2,6 +2,10 @@ import streamlit as st
 import json
 import openai
 from pydantic import BaseModel, Field
+import io
+import os
+from PIL import Image
+from stability_sdk import client as stability_client
 
 # レシピのスキーマの定義
 
@@ -18,6 +22,7 @@ class Recipe(BaseModel):
     instructions: list[str] = Field(
         description="手順", examples=[["材料を切ります。", "材料を炒めます。"]]
     )
+    in_english: str = Field(description="料理名の英語")
 
 
 # レシピを出力する関数の定義
@@ -71,3 +76,21 @@ if dish:
             instructions_markdown += f"{i+1}. {instruction}\n"
         # マークダウンの文字列を表示
         st.write(instructions_markdown)
+
+        # stability-sdk用のインスタンスを初期化
+        # 使用するモデルは 「stable-diffusion-xl-1024-v1-0」
+        stability_api = stability_client.StabilityInference(
+            key=os.environ["STABILITY_KEY"], engine="stable-diffusion-xl-1024-v1-0"
+        )
+        # 画像を生成
+        answers = stability_api.generate(
+            prompt=recipe["in_english"], height=512, width=512, samples=1
+        )
+        # 生成した画像を表示
+        for resp in answers:
+            for artifact in resp.artifacts:
+                if artifact.finish_reason == stability_client.generation.FILTER:
+                    st.warning("画像を生成できませんでした")
+                if artifact.type == stability_client.generation.ARTIFACT_IMAGE:
+                    img = Image.open(io.BytesIO(artifact.binary))
+                    st.image(img)
