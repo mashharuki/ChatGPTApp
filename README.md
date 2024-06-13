@@ -74,3 +74,4 @@ poetry run streamlit run home.py
 6. [GitHub - llama_index](https://github.com/run-llama/llama_index)
 7. [Note - LlamaIndex で ChatGPT API を試す](https://note.com/npaka/n/ncbb858cf11c3)
 8. [データサイエンス100本ノック（構造化データ加工編）](https://github.com/The-Japan-DataScientist-Society/100knocks-preprocess)
+9. [Make - ダッシュボード画面](https://us1.make.com/659763/scenarios/add)
